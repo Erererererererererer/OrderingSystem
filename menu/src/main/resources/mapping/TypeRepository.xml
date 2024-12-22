@@ -4,7 +4,7 @@
 <mapper namespace="com.bitcser.repository.TypeRepository">
 
 	<select id="findById" parameterType="long" resultType="Type">
-		select * from t_type where id = #{id}
+		SELECT * FROM t_type WHERE id = #{id}
 	</select>
 
 </mapper>

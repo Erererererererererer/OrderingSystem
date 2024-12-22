@@ -47,4 +47,5 @@ public class MenuHandler {
     public Menu findById(@PathVariable("id") int id) {
         return menuRepository.findById(id);
     }
+
 }

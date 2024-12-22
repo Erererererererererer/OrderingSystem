@@ -3,6 +3,19 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcser.repository.MenuRepository">
 
+	<insert id="add" parameterType="Menu">
+		INSERT INTO t_menu(name, price, flavor, tid) VALUES (#{name}, #{price}, #{flavor}, #{tid})
+	</insert>
+
+	<delete id="deleteById" parameterType="long">
+		DELETE FROM t_menu WHERE id = #{id}
+	</delete>
+
+	<update id="update" parameterType="Menu">
+		UPDATE t_menu SET name = #{name}, price = #{price}, flavor = #{flavor}
+		WHERE id = #{id}
+	</update>
+
 	<resultMap id="menuMap" type="Menu">
 		<id column="id" property="id"></id>
 		<result column="name" property="name"></result>
@@ -12,27 +25,15 @@
 	</resultMap>
 
 	<select id="findAll" resultMap="menuMap">
-		SELECT * FROM t_menu limit #{param1},#{param2}
-	</select>
-
-	<select id="count" resultType="int">
-		SELECT count(id) FROM t_menu
+		SELECT * FROM t_menu LIMIT #{param1}, #{param2}
 	</select>
 
 	<select id="findById" parameterType="long" resultMap="menuMap">
 		SELECT * FROM t_menu WHERE id = #{id}
 	</select>
 
-	<insert id="add" parameterType="Menu">
-		INSERT INTO t_menu(name,price,flavor,tid) VALUES (#{name},#{price},#{flavor},#{tid})
-	</insert>
+	<select id="count" resultType="int">
+		SELECT count(id) FROM t_menu
+	</select>
 
-	<update id="update" parameterType="Menu">
-		UPDATE t_menu SET name = #{name},price = #{price},flavor = #{flavor}
-		WHERE id = #{id}
-	</update>
-
-	<delete id="deleteById" parameterType="long">
-		DELETE FROM t_menu WHERE id = #{id}
-	</delete>
 </mapper>

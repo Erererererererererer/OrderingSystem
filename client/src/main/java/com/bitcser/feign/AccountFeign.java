@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = "account")
 public interface AccountFeign {
 
+    @PostMapping("/account/register")
+    public void register(@RequestBody User user);
+
     @GetMapping("/account/login/{username}/{password}/{type}")
     public boolean login(@PathVariable("username") String username, @PathVariable("password") String password,
                          @PathVariable("type") String type);
-
-    @PostMapping("/account/register")
-    public void register(@RequestBody User user);
 
 }

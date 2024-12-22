@@ -3,13 +3,13 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcser.repository.UserRepository">
 
-	<select id="findWithPassword" resultType="User">
-		select * from t_user WHERE username = #{username} AND password = #{password}
-	</select>
-
 	<insert id="add" parameterType="User">
 		INSERT INTO t_user(username, password, nickname, gender, telephone, registerdate, address)
 		VALUES (#{username}, #{password}, #{nickname}, #{gender}, #{telephone}, #{registerdate}, #{address})
 	</insert>
+
+	<select id="findWithPassword" resultType="User">
+		SELECT * FROM t_user WHERE username = #{username} AND password = #{password}
+	</select>
 
 </mapper>

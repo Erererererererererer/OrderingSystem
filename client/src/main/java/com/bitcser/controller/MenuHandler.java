@@ -14,6 +14,22 @@ public class MenuHandler {
     @Autowired
     private MenuFeign menuFeign;
 
+    @PostMapping("/add")
+    public void add(Menu menu) {
+        menuFeign.add(menu);
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void delete(@PathVariable("id") int id) {
+        menuFeign.delete(id);
+    }
+
+    @PutMapping("/update")
+    public void update(Menu menu) {
+        menuFeign.update(menu);
+    }
+
+
     @GetMapping("/findAll/{index}/{limit}")
     public List<Menu> findAll(@PathVariable("index") int index, @PathVariable("limit") int limit) {
         return menuFeign.findAll(index, limit);
@@ -22,21 +38,6 @@ public class MenuHandler {
     @GetMapping("/findById/{id}")
     public Menu findById(@PathVariable("id") int id) {
         return menuFeign.findById(id);
-    }
-
-    @PostMapping("/add")
-    public void add(Menu menu) {
-        menuFeign.add(menu);
-    }
-
-    @PutMapping("/update")
-    public void update(Menu menu) {
-        menuFeign.update(menu);
-    }
-
-    @DeleteMapping("/deleteById/{id}")
-    public void delete(@PathVariable("id") int id) {
-        menuFeign.delete(id);
     }
 
 }

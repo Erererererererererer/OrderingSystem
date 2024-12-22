@@ -3,6 +3,24 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bitcser.repository.OrderRepository">
 
+	<insert id="add" parameterType="Order">
+		INSERT INTO t_order(uid, mid, date, state)
+		VALUES (#{uid}, #{mid}, #{date}, #{state})
+	</insert>
+
+	<delete id="deleteByUid" parameterType="long">
+		DELETE FROM t_order WHERE uid = #{uid}
+	</delete>
+
+	<delete id="deleteByMid" parameterType="long">
+		DELETE FROM t_order WHERE mid = #{mid}
+	</delete>
+
+	<update id="updateState" parameterType="long">
+		UPDATE t_order SET aid = #{aid}, state = #{state}
+		WHERE id = #{id}
+	</update>
+
 	<resultMap id="orderMap" type="Order">
 		<id column="id" property="id"></id>
 		<result column="date" property="date"></result>
@@ -26,24 +44,5 @@
 	<select id="findAllByState" parameterType="int" resultMap="orderMap">
 		SELECT * FROM t_order WHERE state = #{state}
 	</select>
-
-	<insert id="add" parameterType="Order">
-		INSERT INTO t_order(uid, mid, date, state)
-		VALUES (#{uid}, #{mid}, #{date}, #{state})
-	</insert>
-
-	<delete id="deleteByUid" parameterType="long">
-		DELETE FROM t_order WHERE uid = #{uid}
-	</delete>
-
-	<delete id="deleteByMid" parameterType="long">
-		DELETE FROM t_order WHERE mid = #{mid}
-	</delete>
-
-	<update id="updateState" parameterType="long">
-		UPDATE t_order SET aid = #{aid}, state = #{state}
-		WHERE id = #{id}
-	</update>
-
 
 </mapper>

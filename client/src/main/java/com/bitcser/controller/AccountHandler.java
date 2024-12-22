@@ -12,15 +12,15 @@ public class AccountHandler {
     @Autowired
     AccountFeign accountFeign;
 
+    @PostMapping("/register")
+    public void register(User user){
+        accountFeign.register(user);
+    }
+
     @GetMapping("/login/{username}/{password}/{type}")
     public boolean login(@PathVariable("username") String username, @PathVariable("password") String password,
                          @PathVariable("type") String type) {
         return accountFeign.login(username, password, type);
-    }
-
-    @PostMapping("/register")
-    public void register(User user){
-        accountFeign.register(user);
     }
 
 }
