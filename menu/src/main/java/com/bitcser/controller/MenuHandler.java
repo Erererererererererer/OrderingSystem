@@ -23,9 +23,9 @@ public class MenuHandler {
         return this.port;
     }
 
-    @PostMapping("/save")
-    public void save(@RequestBody Menu menu) {
-        menuRepository.save(menu);
+    @PostMapping("/add")
+    public void add(@RequestBody Menu menu) {
+        menuRepository.add(menu);
     }
 
     @DeleteMapping("/deleteById/{id}")

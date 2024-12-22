@@ -15,8 +15,8 @@ public interface MenuFeign {
     @GetMapping("/menu/findById/{id}")
     public Menu findById(@PathVariable("id") int id);
 
-    @PostMapping("/menu/save")
-    public void save(@RequestBody Menu menu);
+    @PostMapping("/menu/add")
+    public void add(@RequestBody Menu menu);
 
     @PutMapping("/menu/update")
     public void update(@RequestBody Menu menu);

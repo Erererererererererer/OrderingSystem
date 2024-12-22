@@ -24,9 +24,9 @@ public class MenuHandler {
         return menuFeign.findById(id);
     }
 
-    @PostMapping("/save")
-    public void save(Menu menu) {
-        menuFeign.save(menu);
+    @PostMapping("/add")
+    public void add(Menu menu) {
+        menuFeign.add(menu);
     }
 
     @PutMapping("/update")

@@ -8,7 +8,7 @@ public interface MenuRepository {
     public List<Menu> findAll(int index,int limit);
     public Menu findById(long id);
     public int count();
-    public void save(Menu menu);
+    public void add(Menu menu);
     public void update(Menu menu);
     public void deleteById(long id);
 }

@@ -23,8 +23,8 @@
 		SELECT * FROM t_menu WHERE id = #{id}
 	</select>
 
-	<insert id="save" parameterType="Menu">
-		INSERT INTO t_menu(name,price,flavor) VALUES (#{name},#{price},#{flavor})
+	<insert id="add" parameterType="Menu">
+		INSERT INTO t_menu(name,price,flavor,tid) VALUES (#{name},#{price},#{flavor},#{tid})
 	</insert>
 
 	<update id="update" parameterType="Menu">
