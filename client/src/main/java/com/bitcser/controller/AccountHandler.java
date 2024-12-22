@@ -1,13 +1,9 @@
 package com.bitcser.controller;
 
-
-import com.bitcser.entity.Admin;
 import com.bitcser.entity.User;
 import com.bitcser.feign.AccountFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @RestController
 @RequestMapping("/account")
