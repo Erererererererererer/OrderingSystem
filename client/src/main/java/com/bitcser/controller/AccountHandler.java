@@ -19,7 +19,7 @@ public class AccountHandler {
 
     @GetMapping("/login/{username}/{password}/{type}")
     public boolean login(@PathVariable("username") String username, @PathVariable("password") String password,
-                         @PathVariable("type") String type) {
+                        @PathVariable("type") String type) {
         return accountFeign.login(username, password, type);
     }
 

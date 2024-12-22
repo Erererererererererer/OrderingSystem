@@ -18,14 +18,6 @@ public class OrderHandler {
 
     @Autowired
     private OrderRepository orderRepository;
-    @Autowired
-    private AdminRepository adminRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private MenuRepository menuRepository;
-    @Autowired
-    private TypeRepository typeRepository;
 
     @GetMapping("/index")
     public String index() {
