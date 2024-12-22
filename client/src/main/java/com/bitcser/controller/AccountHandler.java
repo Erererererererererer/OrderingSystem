@@ -1,5 +1,6 @@
 package com.bitcser.controller;
 
+import com.bitcser.common.Result;
 import com.bitcser.entity.User;
 import com.bitcser.feign.AccountFeign;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,15 @@ public class AccountHandler {
     AccountFeign accountFeign;
 
     @PostMapping("/register")
-    public void register(User user){
+    public Result register(User user){
         accountFeign.register(user);
+        return Result.success();
     }
 
     @GetMapping("/login/{username}/{password}/{type}")
-    public boolean login(@PathVariable("username") String username, @PathVariable("password") String password,
+    public Result login(@PathVariable("username") String username, @PathVariable("password") String password,
                         @PathVariable("type") String type) {
-        return accountFeign.login(username, password, type);
+        return Result.success(accountFeign.login(username, password, type));
     }
 
 }

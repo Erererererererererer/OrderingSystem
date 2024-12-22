@@ -1,5 +1,6 @@
 package com.bitcser.controller;
 
+import com.bitcser.common.Result;
 import com.bitcser.entity.User;
 import com.bitcser.feign.UserFeign;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,28 +14,31 @@ public class UserHandler {
     private UserFeign userFeign;
 
     @DeleteMapping("/deleteById/{id}")
-    public void deleteById(@PathVariable("id") int id) {
+    public Result deleteById(@PathVariable("id") int id) {
         userFeign.deleteById(id);
+        return Result.success();
     }
 
     @DeleteMapping("/deleteByUsername/{username}")
-    public void deleteByUsername(@PathVariable("username") String username) {
+    public Result deleteByUsername(@PathVariable("username") String username) {
         userFeign.deleteByUsername(username);
+        return Result.success();
     }
 
     @PutMapping("/update")
-    public void update(User user) {
+    public Result update(User user) {
         userFeign.update(user);
+        return Result.success();
     }
 
     @GetMapping("/findById/{id}")
-    public User findByUsername(@PathVariable("id") int id) {
-        return userFeign.findByUsername(id);
+    public Result findByUsername(@PathVariable("id") int id) {
+        return Result.success(userFeign.findByUsername(id));
     }
 
     @GetMapping("/findByUsername/{username}")
-    public User findByUsername(@PathVariable("username") String username) {
-        return userFeign.findByUsername(username);
+    public Result findByUsername(@PathVariable("username") String username) {
+        return Result.success(userFeign.findByUsername(username));
     }
 
 }
