@@ -35,8 +35,8 @@ public class UserHandler {
     }
 
     @GetMapping("/findAll")
-    public List<User> findAll() {
-        return userFeign.findAll();
+    public Result findAll() {
+        return Result.success(userFeign.findAll());
     }
 
     @GetMapping("/findById/{id}")
