@@ -11,4 +11,4 @@ account\src\main\java\com\bitcser\AccountApplication.java
 user\src\main\java\com\bitcser\UserApplication.java
 menu\src\main\java\com\bitcser\MenuApplication.java
 order\src\main\java\com\bitcser\OrderApplication.java
-client\src\main\java\com\bitcserClientApplication.java
+client\src\main\java\com\bitcser\ClientApplication.java

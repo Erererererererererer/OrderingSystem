@@ -12,6 +12,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/account")
+@CrossOrigin
 public class AccountHandler {
 
     @Value("${server.port}")

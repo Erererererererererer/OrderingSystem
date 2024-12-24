@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/menu")
+@CrossOrigin
 public class MenuHandler {
 
     @Value("${server.port}")
