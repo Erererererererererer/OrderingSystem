@@ -41,6 +41,11 @@ public class OrderHandler {
         return Result.success();
     }
 
+    @GetMapping("/findAll")
+    public Result findAll() {
+        return Result.success(orderFeign.findAll());
+    }
+
     @GetMapping("/findById/{id}")
     public Result findById(@PathVariable("id") int id) {
         return Result.success(orderFeign.findById(id));

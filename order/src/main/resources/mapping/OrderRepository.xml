@@ -33,6 +33,10 @@
 		<association property="admin" select="com.bitcser.repository.AdminRepository.findById" column="aid"></association>
 	</resultMap>
 
+	<select id="findAll" parameterType="long" resultMap="orderMap">
+		SELECT * FROM t_order
+	</select>
+
 	<select id="findById" parameterType="long" resultMap="orderMap">
 		SELECT * FROM t_order WHERE id = #{id}
 	</select>

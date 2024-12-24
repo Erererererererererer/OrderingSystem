@@ -1,5 +1,6 @@
 package com.bitcser.feign;
 
+import com.bitcser.common.Result;
 import com.bitcser.entity.Order;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public interface OrderFeign {
 
     @PutMapping("/order/updateState/{id}/{aid}")
     public void updateState(@PathVariable("id") int id, @PathVariable("aid") int aid);
+
+    @GetMapping("/order/findAll")
+    public List<Order> findAll();
 
     @GetMapping("/order/findById/{id}")
     public Order findById(@PathVariable("id") int id);

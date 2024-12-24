@@ -47,6 +47,11 @@ public class OrderHandler {
         orderRepository.updateState(id, aid, 1);
     }
 
+    @GetMapping("/findAll")
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
     @GetMapping("/findById/{id}")
     public Order findById(@PathVariable("id") int id) {
         return orderRepository.findById(id);
