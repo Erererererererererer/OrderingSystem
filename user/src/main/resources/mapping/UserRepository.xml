@@ -17,6 +17,10 @@
 		WHERE id = #{id}
 	</update>
 
+	<select id="findAll" resultType="User">
+		select * from t_user
+	</select>
+
 	<select id="findById" resultType="User">
 		select * from t_user WHERE id = #{id}
 	</select>

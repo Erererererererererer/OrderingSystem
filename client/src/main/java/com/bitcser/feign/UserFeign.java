@@ -4,6 +4,8 @@ import com.bitcser.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @FeignClient(value = "user")
 public interface UserFeign {
 
@@ -15,6 +17,9 @@ public interface UserFeign {
 
     @PutMapping("/user/update")
     public void update(@RequestBody User user);
+
+    @GetMapping("/user/findAll")
+    public List<User> findAll();
 
     @GetMapping("/user/findById/{id}")
     public User findByUsername(@PathVariable("id") int id);

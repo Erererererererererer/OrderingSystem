@@ -6,6 +6,8 @@ import com.bitcser.feign.UserFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
@@ -30,6 +32,11 @@ public class UserHandler {
     public Result update(User user) {
         userFeign.update(user);
         return Result.success();
+    }
+
+    @GetMapping("/findAll")
+    public List<User> findAll() {
+        return userFeign.findAll();
     }
 
     @GetMapping("/findById/{id}")

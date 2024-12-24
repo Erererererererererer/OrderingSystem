@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -37,6 +38,11 @@ public class UserHandler {
     @PutMapping("/update")
     public void update(@RequestBody User user) {
         userRepository.update(user);
+    }
+
+    @GetMapping("/findAll")
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @GetMapping("/findById/{id}")
