@@ -1,6 +1,7 @@
 package com.bitcser.feign;
 
 import com.bitcser.common.Result;
+import com.bitcser.entity.Course;
 import com.bitcser.entity.Order;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,6 @@ public interface OrderFeign {
     @DeleteMapping("/order/deleteByUid/{uid}")
     public void deleteByUid(@PathVariable("uid") int uid);
 
-    @DeleteMapping("/order/deleteByMid/{mid}")
-    public void deleteByMid(@PathVariable("mid") int mid);
-
     @PutMapping("/order/updateState/{id}/{aid}")
     public void updateState(@PathVariable("id") int id, @PathVariable("aid") int aid);
 
@@ -33,5 +31,8 @@ public interface OrderFeign {
 
     @GetMapping("/order/findAllByState/{state}")
     public List<Order> findAllByState(@PathVariable("state") int state);
+
+    @GetMapping("/order/findAllCoursesByOid/{oid}")
+    public List<Course> findAllCoursesByOid(@PathVariable("oid") int oid);
 
 }

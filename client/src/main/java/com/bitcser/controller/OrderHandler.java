@@ -1,6 +1,7 @@
 package com.bitcser.controller;
 
 import com.bitcser.common.Result;
+import com.bitcser.entity.Course;
 import com.bitcser.entity.Order;
 import com.bitcser.feign.OrderFeign;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class OrderHandler {
     private OrderFeign orderFeign;
 
     @PostMapping("/add")
-    public Result add(Order order) {
+    public Result add(@RequestBody Order order) {
         orderFeign.add(order);
         return Result.success();
     }
@@ -26,12 +27,6 @@ public class OrderHandler {
     @DeleteMapping("/deleteByUid/{uid}")
     public Result deleteByUid(@PathVariable("uid") int uid) {
         orderFeign.deleteByUid(uid);
-        return Result.success();
-    }
-
-    @DeleteMapping("/deleteByMid/{mid}")
-    public Result deleteByMid(@PathVariable("mid") int mid) {
-        orderFeign.deleteByMid(mid);
         return Result.success();
     }
 
@@ -59,6 +54,11 @@ public class OrderHandler {
     @GetMapping("/findAllByState/{state}")
     public Result findAllByState(@PathVariable("state") int state) {
         return Result.success(orderFeign.findAllByState(state));
+    }
+
+    @GetMapping("/findAllCoursesByOid/{oid}")
+    public Result findAllCoursesByOid(@PathVariable("oid") int oid) {
+        return Result.success(orderFeign.findAllCoursesByOid(oid));
     }
 
 }

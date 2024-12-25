@@ -4,16 +4,12 @@
 <mapper namespace="com.bitcser.repository.OrderRepository">
 
 	<insert id="add" parameterType="Order">
-		INSERT INTO t_order(uid, mid, date, state)
-		VALUES (#{uid}, #{mid}, #{date}, #{state})
+		INSERT INTO t_order(uid, date, state)
+		VALUES (#{uid}, #{date}, #{state})
 	</insert>
 
 	<delete id="deleteByUid" parameterType="long">
 		DELETE FROM t_order WHERE uid = #{uid}
-	</delete>
-
-	<delete id="deleteByMid" parameterType="long">
-		DELETE FROM t_order WHERE mid = #{mid}
 	</delete>
 
 	<update id="updateState" parameterType="long">
@@ -26,11 +22,10 @@
 		<result column="date" property="date"></result>
 		<result column="state" property="state"></result>
 		<result column="uid" property="uid"></result>
-		<result column="mid" property="mid"></result>
 		<result column="aid" property="aid"></result>
 		<association property="user" select="com.bitcser.repository.UserRepository.findById" column="uid"></association>
-		<association property="menu" select="com.bitcser.repository.MenuRepository.findById" column="mid"></association>
 		<association property="admin" select="com.bitcser.repository.AdminRepository.findById" column="aid"></association>
+		<association property="courses" select="com.bitcser.repository.CourseRepository.findAllByOid" column="id"></association>
 	</resultMap>
 
 	<select id="findAll" parameterType="long" resultMap="orderMap">
@@ -39,6 +34,10 @@
 
 	<select id="findById" parameterType="long" resultMap="orderMap">
 		SELECT * FROM t_order WHERE id = #{id}
+	</select>
+
+	<select id="findByUid" resultMap="orderMap">
+		SELECT * FROM t_order WHERE uid = #{uid}
 	</select>
 
 	<select id="findAllByUid" parameterType="long" resultMap="orderMap">

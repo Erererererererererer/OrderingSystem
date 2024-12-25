@@ -1,12 +1,13 @@
 package com.bitcser.controller;
 
+import com.bitcser.entity.Course;
 import com.bitcser.entity.Order;
 import com.bitcser.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -20,6 +21,9 @@ public class OrderHandler {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CourseRepository courseRepository;
+
     @GetMapping("/index")
     public String index() {
         return "order的端口为：" + this.port;
@@ -27,19 +31,27 @@ public class OrderHandler {
 
     @PostMapping("/add")
     public void add(@RequestBody Order order) {
-        order.setDate(new Date());
+        order.setDate(new Timestamp(System.currentTimeMillis()));
         order.setState(0);
         orderRepository.add(order);
+        // 存course表
+        List<Order> orderList = orderRepository.findByUid(order.getUid());
+        int oid = orderList.get(orderList.size() - 1).getId();
+        for (Course course : order.getCourses()) {
+            course.setOid(oid);
+            courseRepository.add(course);
+        }
     }
 
     @DeleteMapping("/deleteByUid/{uid}")
     public void deleteByUid(@PathVariable("uid") int uid) {
+        // 先删course表
+        List<Order> orderList = orderRepository.findByUid(uid);
+        for (Order order : orderList) {
+            courseRepository.deleteByOid(order.getId());
+        }
+        // 再删order表
         orderRepository.deleteByUid(uid);
-    }
-
-    @DeleteMapping("/deleteByMid/{mid}")
-    public void deleteByMid(@PathVariable("mid") int mid) {
-        orderRepository.deleteByMid(mid);
     }
 
     @PutMapping("/updateState/{id}/{aid}")
@@ -65,6 +77,11 @@ public class OrderHandler {
     @GetMapping("/findAllByState/{state}")
     public List<Order> findAllByState(@PathVariable("state") int state) {
         return orderRepository.findAllByState(state);
+    }
+
+    @GetMapping("/findAllCoursesByOid/{oid}")
+    public List<Course> findAllCoursesByOid(@PathVariable("oid") int oid) {
+        return courseRepository.findAllByOid(oid);
     }
 
 }
